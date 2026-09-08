@@ -1,0 +1,23 @@
+[build-system]
+requires = ['setuptools>=61']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'xray-subscription-parser'
+version = '0.1.0'
+description = 'Generate Xray client JSON configs from a subscription URL'
+readme = 'README.md'
+license = { file = 'LICENSE' }
+requires-python = '>=3.10'
+authors = [
+    { name = 'Anton Lukyanov' },
+]
+
+[project.urls]
+Homepage = 'https://github.com/antonlukyanov/xray-subscription-parser'
+
+[project.scripts]
+xray-subscription-parser = 'subscription_to_xray:main'
+
+[tool.setuptools]
+py-modules = ['subscription_to_xray']

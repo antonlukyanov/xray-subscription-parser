@@ -1,10 +1,30 @@
-# xray-scripts
+# xray-subscription-parser
 
 [Русский](README.md)
 
 A script that downloads an Xray subscription (plain-text or Base64 share links) and writes a separate client JSON config for each location.
 
-Python 3 only. No extra packages.
+Python 3.10+ only. No extra packages.
+
+## Install
+
+From the repository:
+
+```bash
+pip install git+https://github.com/antonlukyanov/xray-subscription-parser.git
+```
+
+From a local checkout:
+
+```bash
+pip install .
+```
+
+After install, run it from the console:
+
+```bash
+xray-subscription-parser --url-file subscription.url -o ./configs
+```
 
 ## Usage
 
@@ -12,7 +32,7 @@ Put the subscription URL in a file so it does not end up in shell history:
 
 ```bash
 echo 'https://example.com/subscription' > subscription.url
-python3 subscription_to_xray.py --url-file subscription.url -o ./configs
+xray-subscription-parser --url-file subscription.url -o ./configs
 ```
 
 Empty lines and comments starting with `#` are ignored.
@@ -20,10 +40,16 @@ Empty lines and comments starting with `#` are ignored.
 Or pass the URL on the command line (it will be stored in shell history):
 
 ```bash
-python3 subscription_to_xray.py --url 'https://example.com/subscription' -o ./configs
+xray-subscription-parser --url 'https://example.com/subscription' -o ./configs
 ```
 
 Either `--url` or `--url-file` is required.
+
+Without installing, you can still run the file directly:
+
+```bash
+python3 subscription_to_xray.py --url-file subscription.url -o ./configs
+```
 
 Run a client:
 

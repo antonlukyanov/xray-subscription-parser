@@ -1,10 +1,30 @@
-# xray-scripts
+# xray-subscription-parser
 
 [English](README.en.md)
 
 Скрипт скачивает подписку Xray (список ссылок, обычный текст или Base64) и сохраняет отдельный JSON-конфиг клиента для каждой локации.
 
-Нужен только Python 3. Дополнительные пакеты не требуются.
+Нужен только Python 3.10+. Дополнительные пакеты не требуются.
+
+## Установка
+
+Из репозитория:
+
+```bash
+pip install git+https://github.com/antonlukyanov/xray-subscription-parser.git
+```
+
+Из локальной копии:
+
+```bash
+pip install .
+```
+
+После установки команда доступна в консоли:
+
+```bash
+xray-subscription-parser --url-file subscription.url -o ./configs
+```
 
 ## Как пользоваться
 
@@ -12,7 +32,7 @@
 
 ```bash
 echo 'https://example.com/subscription' > subscription.url
-python3 subscription_to_xray.py --url-file subscription.url -o ./configs
+xray-subscription-parser --url-file subscription.url -o ./configs
 ```
 
 Пустые строки и комментарии, начинающиеся с `#`, в файле игнорируются.
@@ -20,10 +40,16 @@ python3 subscription_to_xray.py --url-file subscription.url -o ./configs
 Либо передайте URL напрямую (он останется в истории команд):
 
 ```bash
-python3 subscription_to_xray.py --url 'https://example.com/subscription' -o ./configs
+xray-subscription-parser --url 'https://example.com/subscription' -o ./configs
 ```
 
 Нужно указать `--url` или `--url-file`.
+
+Без установки можно запустить файл напрямую:
+
+```bash
+python3 subscription_to_xray.py --url-file subscription.url -o ./configs
+```
 
 Запуск клиента:
 

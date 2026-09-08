@@ -134,6 +134,9 @@ def to_filename(name: str) -> str:
     slug = re.sub(r'\s+', '-', slug.strip())
     slug = slug.replace('[', '').replace(']', '')
     slug = re.sub(r'-{2,}', '-', slug).strip('.-')
+    # Location names often mix Latin letters with Cyrillic lookalikes.
+    slug = re.sub(r'^S[MМ]ART', 'SMART', slug, flags=re.IGNORECASE)
+    slug = re.sub(r'LT[EЕ]', 'LTE', slug, flags=re.IGNORECASE)
     return slug or 'unnamed'
 
 
@@ -528,7 +531,8 @@ def build_client_config(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description='Генерирует JSON-конфиги Xray по ссылке на подписку.'
+        prog='xray-subscription-parser',
+        description='Генерирует JSON-конфиги Xray по ссылке на подписку.',
     )
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument(

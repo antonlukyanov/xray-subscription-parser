@@ -6,3 +6,6 @@ configs/
 subscription.url
 .venv/
 venv/
+*.egg-info/
+dist/
+build/
